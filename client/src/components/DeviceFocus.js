@@ -25,6 +25,7 @@ function DeviceFocus({focusDevice}) {
         <div className="device-focus-page">
             <h2>{selectedDevice.name}</h2>
             <img src={selectedDevice.image} alt="Hi" />
+            <h2>These games are available:</h2>
             {focusCard}
         </div>
     )

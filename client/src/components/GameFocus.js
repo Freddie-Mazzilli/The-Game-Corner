@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 function GameFocus({focusGame}) {
 
     const [selectedGame, setSelectedGame] = useState([])
+    const [gameDevices, setGameDevices] = useState([])
 
     useEffect(() => {
         fetch(`http://127.0.0.1:7000/games/${focusGame}`)
         .then(res => res.json())
-        .then(selectedGame => setSelectedGame(selectedGame))
+        .then(selectedGame => setSelectedGame(selectedGame), setGameDevices(selectedGame.devices))
     }, [])
 
     if(!selectedGame.devices){
@@ -16,12 +17,24 @@ function GameFocus({focusGame}) {
         )
     }
 
+    const devices = selectedGame.devices.map(device => {
+        return (
+            <div className="device-focus-card">
+                <img src={device.image} alt={device.id} />
+                <p>{device.name}</p>
+            </div>
+        )
+    })
+
+    console.log(selectedGame.devices)
+
     return(
         <div className="game-focus">
             <h2>{selectedGame.name}</h2>
-            <img src={selectedGame.image} alt="hi" />
+            <img className="game-focus-img" src={selectedGame.image} alt="hi" />
             <p>{selectedGame.description}</p>
-            <h2>{selectedGame.devices.name}</h2>
+            <h2>This game is available on:</h2>
+            {devices}
         </div>
     )
 }

@@ -4,8 +4,8 @@ function Device({device, deviceFocusSelector}) {
 
     return(
         <div className="device-card">
-            <img onClick={deviceFocusSelector} src={device.image} alt={device.id} />
             <h2>{device.name}</h2>
+            <img onClick={deviceFocusSelector} src={device.image} alt={device.id} />
             <p>{device.type}</p>
         </div>
     )

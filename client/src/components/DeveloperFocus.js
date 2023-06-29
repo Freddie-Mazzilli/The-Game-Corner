@@ -25,6 +25,7 @@ function DeveloperFocus({focusDeveloper}) {
         <div className="device-focus-page">
             <h2>{selectedDeveloper.name}</h2>
             <img src={selectedDeveloper.logo} alt="Hi" />
+            <h2>Games by this developer:</h2>
             {focusCard}
         </div>
     )

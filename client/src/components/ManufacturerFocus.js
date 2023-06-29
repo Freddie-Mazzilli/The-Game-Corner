@@ -24,12 +24,12 @@ function ManufacturerFocus({focusManufacturer, deviceFocusSelector}) {
         return <Device key={device.id} device={device} deviceFocusSelector={deviceFocusSelector}/>
     })
 
-    console.log(filteredDevices)
-
-
     return(
-        <div className="device-grid">
-            {device}
+        <div>
+            <h2 className="manufacturer-title">Devices from: {focusManufacturer}</h2>
+            <div className="device-grid">
+                {device}
+            </div>
         </div>
     )
 }
