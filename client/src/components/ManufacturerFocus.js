@@ -21,14 +21,16 @@ function ManufacturerFocus({focusManufacturer, deviceFocusSelector}) {
     }, [])
 
     const device = filteredDevices.map((device) => {
-        return <Device device={device} deviceFocusSelector={deviceFocusSelector}/>
+        return <Device key={device.id} device={device} deviceFocusSelector={deviceFocusSelector}/>
     })
 
     console.log(filteredDevices)
 
 
     return(
-        <h2>{device}</h2>
+        <div className="device-grid">
+            {device}
+        </div>
     )
 }
 

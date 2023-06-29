@@ -18,7 +18,7 @@ function DeviceFocus({focusDevice}) {
     }
 
     const focusCard = selectedDevice.games.map(game => {
-        return <DeviceFocusCard game={game}/>
+        return <DeviceFocusCard key={game.id} game={game}/>
     })
 
     return(

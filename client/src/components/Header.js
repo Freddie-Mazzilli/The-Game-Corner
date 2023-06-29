@@ -1,9 +1,9 @@
 import React from "react";
 
-function Header() {
+function Header({logoClick}) {
 
     return(
-            <img src="/assets/Logo-final.png" alt="Hi"/>
+            <img onClick={logoClick} src="/assets/Logo-final.png" alt="Hi"/>
     )
 }
 

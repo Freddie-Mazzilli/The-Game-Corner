@@ -65,10 +65,14 @@ function App() {
     history.push('/manufacturerfocus')
   }
 
+  function logoClick() {
+    history.push('/home')
+  }
+
   return (
     <div className="app">
       <div className='header'>
-        <Header />
+        <Header logoClick={logoClick} />
         <Nav />
       </div>
       <Switch>

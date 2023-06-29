@@ -4,7 +4,7 @@ import Device from "./Device";
 function DeviceList({devices, deviceFocusSelector}) {
 
     const device = devices.map((device) => {
-        return <Device device={device} deviceFocusSelector={deviceFocusSelector}/>
+        return <Device key={device.id} device={device} deviceFocusSelector={deviceFocusSelector}/>
     })
 
     return(
