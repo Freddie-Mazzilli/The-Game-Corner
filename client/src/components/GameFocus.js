@@ -33,6 +33,12 @@ function GameFocus({focusGame}) {
             <h2>{selectedGame.name}</h2>
             <img className="game-focus-img" src={selectedGame.image} alt="hi" />
             <p>{selectedGame.description}</p>
+            <p>Players: {selectedGame.number_of_players}</p>
+            <h2>Developers:</h2>
+            <div className="device-focus-card">
+                <img src={selectedGame.developers[0].logo}/>
+                <p>{selectedGame.developers[0].name}</p>
+            </div>
             <h2>This game is available on:</h2>
             {devices}
         </div>

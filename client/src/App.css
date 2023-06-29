@@ -88,6 +88,10 @@ body {
   margin: 8%;
 }
 
+.home1 img:hover {
+  max-width: 35%;
+}
+
 .home-content img {
   max-width: 30%;
 }
@@ -122,6 +126,13 @@ body {
   border-radius: 5px;
   color: #333;
   width: auto;
+}
+
+.device-card:hover {
+  background-color: #ffffff;
+  border-color: #00AD00;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .device-grid {
@@ -161,6 +172,13 @@ body {
   width: auto;
 }
 
+.game-card:hover {
+  background-color: #ffffff;
+  border-color: #00AD00;
+  border-width: 2px;
+  border-style: solid;
+}
+
 .developer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -188,6 +206,13 @@ body {
   padding: 10px;
   border-radius: 5px;
   color: #333;
+}
+
+.developer-card:hover {
+  background-color: #ffffff;
+  border-color: #00AD00;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .nav-bar {

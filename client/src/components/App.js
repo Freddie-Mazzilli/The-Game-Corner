@@ -14,6 +14,7 @@ import DeviceFocus from './DeviceFocus';
 import DeveloperFocus from './DeveloperFocus';
 import GameFocus from './GameFocus';
 import ManufacturerFocus from './ManufacturerFocus';
+import Search from './Search';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
   const [focusDeveloper, setFocusDeveloper] = useState('')
   const [focusGame, setFocusGame] = useState('')
   const [focusManufacturer, setFocusManufacturer] = useState('')
+
+  const [searchText, setSearchText] = useState('')
+  const [online, setOnline] = useState('')
 
   useEffect(() => {
     fetch('http://127.0.0.1:7000/devices')
@@ -69,6 +73,17 @@ function App() {
     history.push('/home')
   }
 
+  function onlineChecker(event) {
+    setOnline(event.target.value)
+  }
+
+  const filteredGames = games.filter(game => {
+    if(searchText === "" && online === 'all') {
+      return true
+    }
+    return game.name.toUpperCase().includes(searchText.toUpperCase())
+  })
+
   return (
     <div className="app">
       <div className='header'>
@@ -86,7 +101,8 @@ function App() {
           <DeviceList deviceFocusSelector={deviceFocusSelector} devices={devices}/>
         </Route>
         <Route exact path="/games">
-          <GameList games={games} gameFocusSelector={gameFocusSelector} />
+          <Search setSearchText={setSearchText} />
+          <GameList games={filteredGames} gameFocusSelector={gameFocusSelector} />
         </Route>
         <Route exact path="/developers">
           <DeveloperList developers={developers} developerFocusSelector={developerFocusSelector} />
