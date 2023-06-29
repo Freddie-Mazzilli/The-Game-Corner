@@ -13,6 +13,7 @@ import Nav from './Nav';
 import DeviceFocus from './DeviceFocus';
 import DeveloperFocus from './DeveloperFocus';
 import GameFocus from './GameFocus';
+import ManufacturerFocus from './ManufacturerFocus';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
   const [focusDevice, setFocusDevice] = useState('')
   const [focusDeveloper, setFocusDeveloper] = useState('')
   const [focusGame, setFocusGame] = useState('')
+  const [focusManufacturer, setFocusManufacturer] = useState('')
 
   useEffect(() => {
     fetch('http://127.0.0.1:7000/devices')
@@ -58,6 +60,11 @@ function App() {
     history.push('/gamefocus')
   }
 
+  function manufacturerFocusSelector(event) {
+    setFocusManufacturer(event.target.alt)
+    history.push('/manufacturerfocus')
+  }
+
   return (
     <div className="app">
       <div className='header'>
@@ -69,7 +76,7 @@ function App() {
           <Login />
         </Route>
         <Route exact path="/home">
-          <Homepage />
+          <Homepage manufacturerFocusSelector={manufacturerFocusSelector}/>
         </Route>
         <Route exact path="/devices">
           <DeviceList deviceFocusSelector={deviceFocusSelector} devices={devices}/>
@@ -88,6 +95,9 @@ function App() {
         </Route>
         <Route exact path="/gamefocus">
           <GameFocus focusGame={focusGame}/>
+        </Route>
+        <Route exact path='/manufacturerfocus'>
+          <ManufacturerFocus deviceFocusSelector={deviceFocusSelector} focusManufacturer={focusManufacturer} />
         </Route>
       </Switch>
       <Footer />

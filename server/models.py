@@ -14,7 +14,7 @@ class Game(db.Model, SerializerMixin):
     __tablename__ = 'games'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False)
     image = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     online = db.Column(db.Boolean, nullable=False)
@@ -47,13 +47,13 @@ class Game(db.Model, SerializerMixin):
 
     @validates('description')
     def validate_description(self, key, value):
-        if not (25 <= len(value) <= 500):
-            raise ValueError('Description must be between 25 and 250 characters')
+        if not (25 <= len(value) <= 600):
+            raise ValueError('Description must be between 25 and 600 characters')
         return value
 
     @validates('genre')
     def validate_genre(self, key, value):
-        genres = ['Action', 'Adventure', 'Puzzle', 'RPG', 'Simulator', 'Strategy', 'Sports', 'Shooter', 'Platformer']
+        genres = ['Action', 'Adventure', "Action-Adventure", 'Puzzle', 'RPG', 'Simulator', 'Strategy', 'Sports', 'Shooter', 'Platformer', "Racing", "Horror"]
         if not value in genres:
             raise ValueError(f'{value} is not a valid genre.')
         return value
@@ -65,6 +65,7 @@ class Device(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
     image = db.Column(db.String, nullable=False)
+    manufacturer = db.Column(db.String, nullable=False)
 
     # Relationships
     geedees = db.relationship('Geedee', back_populates='device', cascade='all, delete-orphan')
@@ -74,6 +75,13 @@ class Device(db.Model, SerializerMixin):
     serialize_rules = ('-geedees',)
 
     # Validations
+    @validates('manufacturer')
+    def validate_manufacturer(self, key, value):
+        types = ['Nintendo', 'Sony', 'Microsoft']
+        if not value in types:
+            raise ValueError(f'{key} must be one of the following options: {types}')
+        return value
+
     @validates('type')
     def validate_type(self, key, value):
         types = ['Console', 'Handheld', 'PC']

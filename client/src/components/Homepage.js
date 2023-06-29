@@ -1,15 +1,15 @@
 import React from "react";
 
-function Homepage() {
+function Homepage({manufacturerFocusSelector}) {
 
     return(
         <div className="home-content">
             <div className="home1">
-                <img src="/assets/nintendo-logo.png" alt="Hi"/>
+                <img onClick={manufacturerFocusSelector} src="/assets/nintendo-logo.png" alt="Nintendo"/>
             </div>
             <div className="home1">
-                <img src="/assets/sony-logo.png" alt="Hi"/>
-                <img src="/assets/microsoft-logo.png" alt="Hi"/>
+                <img onClick={manufacturerFocusSelector} src="/assets/sony-logo.png" alt="Sony"/>
+                <img onClick={manufacturerFocusSelector} src="/assets/microsoft-logo.png" alt="Microsoft"/>
             </div>
         </div>
     )

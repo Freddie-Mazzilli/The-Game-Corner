@@ -21,6 +21,7 @@ function GameFocus({focusGame}) {
             <h2>{selectedGame.name}</h2>
             <img src={selectedGame.image} alt="hi" />
             <p>{selectedGame.description}</p>
+            <h2>{selectedGame.devices.name}</h2>
         </div>
     )
 }
