@@ -14,3 +14,18 @@ Features of THE GAME CORNER!
 * Display a list of consoles (and the games available on the console when clicking on the image)
 * The ability to add a new game via a form, while also having a default value in the event no values were added
 * Homepage has logos that when clicked, displays consoles associated to the company 
+
+Getting Started . . .
+* Clone this repository to your local machine
+* Install the required dependencies pipenv install & shell
+* Set up the database by executing the "seed.py" script
+* Run the application by executing the "app.py" script
+* In a new terminal, install the required dependencies npm install
+* In the same terminal, run the application by executing "npm start"
+* Enjoy!
+
+Contributions
+
+Created by Freddie Mazzilli, Anthony Lopez, Eylem Aytas, & Eduardo Heyer
+
+Feedback is always appreciated!
