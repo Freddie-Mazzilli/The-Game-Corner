@@ -17,6 +17,7 @@ import ManufacturerFocus from './ManufacturerFocus';
 import Search from './Search';
 import RelationshipManager from './RelationshipManager';
 import NewRelationship from './NewRelationship';
+import NewGameForm from './NewGameForm';
 
 function App() {
 
@@ -30,10 +31,36 @@ function App() {
   const [focusGame, setFocusGame] = useState('')
   const [focusManufacturer, setFocusManufacturer] = useState('')
 
+  const [formData, setFormData] = useState({
+    name: "Gimme, Gimme, Game",
+    image: "https://cdna.artstation.com/p/assets/images/images/058/441/650/large/monica-lu-sus-cat-web.jpg?1674156555",
+    genre: "Simulator",
+    online: true,
+    number_of_players: 1, 
+    release_year: 2000,
+    description: "This is where you gimme the game",
+    developer_id: 46
+  })
+
   const [searchText, setSearchText] = useState('')
   const [online, setOnline] = useState('')
 
   const [newRelationship, setNewRelationship] = useState({})
+
+  function addGame(event){
+    event.preventDefault()
+
+    fetch("http://localhost:7000/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(newGame => setGames([...games, newGame]))
+  }
 
   useEffect(() => {
     fetch('http://127.0.0.1:7000/devices')
@@ -83,6 +110,10 @@ function App() {
 
   function onlineChecker(event) {
     setOnline(event.target.value)
+  }
+
+  function updateFormData(event) {
+    setFormData({...formData, [event.target.id]: event.target.value})
   }
 
   const filteredGames = games.filter(game => {
@@ -150,6 +181,9 @@ function App() {
         </Route>
         <Route exact path='/relationships/new_relationship'>
           <NewRelationship addRelationship={addRelationship} updateNewRelationship={updateNewRelationship}/>
+        </Route>
+        <Route exact path="/games/new_game">
+          <NewGameForm  updateFormData={updateFormData} addGame={addGame}/>
         </Route>
       </Switch>
       <Footer />

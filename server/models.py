@@ -35,13 +35,13 @@ class Game(db.Model, SerializerMixin):
     # Validations
     @validates('number_of_players')
     def validate_number_of_players(self, key, value):
-        if not (1 <= value <= 8):
+        if not (1 <= int(value) <= 8):
             raise ValueError('Number of players must be an integer between 1 and 8.')
         return value
 
     @validates('release_year')
     def validate_release_year(self, key, value):
-        if not (1990 <= value <= 2024):
+        if not (1990 <= int(value) <= 2024):
             raise ValueError('Game release year must be a valid year')
         return value
 

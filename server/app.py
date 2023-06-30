@@ -205,6 +205,17 @@ api.add_resource(DevicesById, '/devices/<int:id>')
 
 class Geedees(Resource):
 
+    def get(self):
+        geedees = Geedee.query.all()
+        response_body = []
+        for geedee in geedees:
+            relationship = {
+                'game': geedee.game.to_dict(),
+                'device': geedee.device.to_dict()
+            }
+            response_body.append(relationship)
+        return make_response(jsonify(response_body), 200)
+
     def post(self):
         try:
             data = request.get_json()

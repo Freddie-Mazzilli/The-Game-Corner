@@ -121,7 +121,8 @@ body {
   text-align: center;
   font-size: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-image: linear-gradient(#f2f2f2, #6f6f6f);
   padding: 10px;
   border-radius: 5px;
   color: #333;
@@ -165,7 +166,8 @@ body {
   text-align: center;
   font-size: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-image: linear-gradient(#545454, #f2f2f2);
   padding: 10px;
   border-radius: 5px;
   color: #333;
@@ -353,4 +355,21 @@ body {
   color: #00AD00;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.relationship-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 15%;
+  grid-row-gap: 50px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+}
+
+.relationship-grid img{
+  max-width: 150px;
 }
