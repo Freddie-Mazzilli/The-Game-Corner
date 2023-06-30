@@ -15,6 +15,8 @@ import DeveloperFocus from './DeveloperFocus';
 import GameFocus from './GameFocus';
 import ManufacturerFocus from './ManufacturerFocus';
 import Search from './Search';
+import RelationshipManager from './RelationshipManager';
+import NewRelationship from './NewRelationship';
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
 
   const [searchText, setSearchText] = useState('')
   const [online, setOnline] = useState('')
+
+  const [newRelationship, setNewRelationship] = useState({})
 
   useEffect(() => {
     fetch('http://127.0.0.1:7000/devices')
@@ -73,6 +77,10 @@ function App() {
     history.push('/home')
   }
 
+  function relationshipButton() {
+    history.push('/relationships/new_relationship')
+  }
+
   function onlineChecker(event) {
     setOnline(event.target.value)
   }
@@ -83,6 +91,24 @@ function App() {
     }
     return game.name.toUpperCase().includes(searchText.toUpperCase())
   })
+
+  function updateNewRelationship(event) {
+    setNewRelationship({...newRelationship, [event.target.name]: event.target.value})
+  }
+
+  function addRelationship(event){
+    event.preventDefault()
+
+    fetch("http://localhost:7000/geedees", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(newRelationship)
+    })
+    .then(response => response.json())
+  }
 
   return (
     <div className="app">
@@ -118,6 +144,12 @@ function App() {
         </Route>
         <Route exact path='/manufacturerfocus'>
           <ManufacturerFocus deviceFocusSelector={deviceFocusSelector} focusManufacturer={focusManufacturer} />
+        </Route>
+        <Route exact path='/relationships'>
+          <RelationshipManager relationshipButton={relationshipButton} />
+        </Route>
+        <Route exact path='/relationships/new_relationship'>
+          <NewRelationship addRelationship={addRelationship} updateNewRelationship={updateNewRelationship}/>
         </Route>
       </Switch>
       <Footer />
