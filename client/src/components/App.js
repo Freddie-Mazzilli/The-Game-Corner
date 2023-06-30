@@ -101,7 +101,7 @@ function App() {
           <DeviceList deviceFocusSelector={deviceFocusSelector} devices={devices}/>
         </Route>
         <Route exact path="/games">
-          <Search setSearchText={setSearchText} />
+          <Search setSearchText={setSearchText} onlineChecker={onlineChecker} />
           <GameList games={filteredGames} gameFocusSelector={gameFocusSelector} />
         </Route>
         <Route exact path="/developers">

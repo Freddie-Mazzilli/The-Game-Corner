@@ -1,6 +1,6 @@
 import React from "react";
 
-function Search({setSearchText}) {
+function Search({setSearchText, onlineChecker}) {
 
 
 
@@ -17,7 +17,7 @@ function Search({setSearchText}) {
                 }}
             />
             <div>
-                <select name="Online">
+                <select onChange={onlineChecker} name="Online">
                     <option value="all">All</option>
                     <option value={true}>Online</option>
                     <option value={false}>Offline</option>

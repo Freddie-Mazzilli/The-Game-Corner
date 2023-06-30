@@ -35,8 +35,8 @@ class Game(db.Model, SerializerMixin):
     # Validations
     @validates('number_of_players')
     def validate_number_of_players(self, key, value):
-        if not (1 <= value <= 4):
-            raise ValueError('Number of players must be an integer between 1 and 4.')
+        if not (1 <= value <= 8):
+            raise ValueError('Number of players must be an integer between 1 and 8.')
         return value
 
     @validates('release_year')
@@ -47,13 +47,13 @@ class Game(db.Model, SerializerMixin):
 
     @validates('description')
     def validate_description(self, key, value):
-        if not (25 <= len(value) <= 600):
-            raise ValueError('Description must be between 25 and 600 characters')
+        if not (25 <= len(value) <= 1000):
+            raise ValueError('Description must be between 25 and 1000 characters')
         return value
 
     @validates('genre')
     def validate_genre(self, key, value):
-        genres = ['Action', 'Adventure', "Action-Adventure", 'Puzzle', 'RPG', 'Simulator', 'Strategy', 'Sports', 'Shooter', 'Platformer', "Racing", "Horror"]
+        genres = ['Action', 'Adventure', "Action-Adventure", 'Puzzle', 'RPG', 'Simulator', 'Strategy', 'Sports', 'Shooter', 'Platformer', "Racing", "Horror", "Fighting", "Party", "Stealth", "Sandbox"]
         if not value in genres:
             raise ValueError(f'{value} is not a valid genre.')
         return value
